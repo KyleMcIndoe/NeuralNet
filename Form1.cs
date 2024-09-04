@@ -10,22 +10,6 @@ using System.Windows.Forms;
 
 namespace NeuralNet
 {
-    public class network {
-        layer[] layers;
-        public network(int[] layersizes) {
-
-        }
-    }
-    public class layer {
-        double[,] weights;
-        double[] biases;
-        public layer(int nodecount)
-        {
-
-        }
-
-        
-    }
     public partial class Form1 : Form
     {
         public Form1()
