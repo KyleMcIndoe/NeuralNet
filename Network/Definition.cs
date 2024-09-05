@@ -1,13 +1,16 @@
 using System;
+using System.Collections.Generic;
 
 public Random rnd = new Random();
 
-public class network {
+global class network {
 
     class node {
-        List<int> weights = new List<int>;
-        double bias = 0;
+        
+        double value = 0;
 
+        double bias = 0;
+        List<int> weights = new List<int>;
         List<node> connections = new List<node>;
 
         public node(double x) {
@@ -44,5 +47,45 @@ public class network {
                 }
             }
         } // this constructor is built on hopes and dreams
+    }
+
+
+    double[] calculateOutputs(double[] inputs, network n) {
+        for(int i = 0; i < n.layers[0].Length; i++) { // initial input, passes array values into first layer
+            n.layers[0].nodes[i].value = inputs[i];
+        }
+
+        void layerMath(layer l) {
+            for(int i = 0; i < l.Length; i++) {
+                node n = l[i];
+                n.value += n.bias;
+                n.value = functions.sigmoid(n.value);
+
+                for(int j = 0; j < n.connections.Count; j++) {
+                    n.connections[j] += n.value * n.weights[j];
+                }
+            }
+        }
+
+        double[] lastLayerMath(layer l) {
+
+            double[] ans = new double[l.nodes.Length];
+
+            for(int i = 0; i < l.nodes.Length; i++) {
+                node no = l.nodes[i];
+                no.value += no.bias;
+                no.value = functions.sigmoid(n.value);
+                ans[i] = no.value;
+            }
+
+            return ans;
+        }
+
+        for (int i = 0; i < n.layers.Length - 1; i++) {
+            layerMath(n.layers[i]);
+        }
+
+        double[] output = lastLayerMath(n.layers[n.layers.Length - 1]);
+        return output;
     }
 }
