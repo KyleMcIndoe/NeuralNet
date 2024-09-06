@@ -5,12 +5,12 @@ public Random rnd = new Random();
 
 global class network {
 
-    class node {
+    public class node {
         
         double value = 0;
 
         double bias = 0;
-        List<int> weights = new List<int>;
+        List<double> weights = new List<double>;
         List<node> connections = new List<node>;
 
         public node(double x) {
@@ -18,7 +18,7 @@ global class network {
         }
     }
 
-    class layer {
+    public class layer {
         node[] nodes;
 
         public layer(int nodecount) {

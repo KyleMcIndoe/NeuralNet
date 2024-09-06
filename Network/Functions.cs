@@ -36,4 +36,20 @@ global namespace functions {
         return outputs;
     }
 
+    public void backwardPropagation(network n, int[] forwardProp, int[] trainingDataAnswers) {
+        double mse = meanSquaredError(trainingDataAnswers, forwardProp);
+
+        node[] findInputNodes(node x, int layernum) { // return a list of nodes that connect to a certain node
+            node[] prevlayer = n.layers[layernum - 1];
+            return prevlayer;
+        }
+
+        void adjustWeights(double adjustmentAmount; layer prevl; int nodeIndex) { // adjust all weights that point to a certain node
+            for(int i = 0; i < prevl.Length; i++) {
+                int curNode = prevl[i];
+                curNode.weights[nodeIndex] += adjustmentAmount;
+            }
+        }
+    }
+
 }
