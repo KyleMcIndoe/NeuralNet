@@ -88,4 +88,18 @@ global class network {
         double[] output = lastLayerMath(n.layers[n.layers.Length - 1]);
         return output;
     }
+
+    int classifyOutput(double[] output) { // return the index of the largest node in the output layer
+        double max = 0;
+        double maxindex = 0;
+
+        for(int i = 0; i < output.Length; i++) {
+            if (output[i] > max) {
+                max = output[i];
+                maxindex = i;
+            }
+        }
+
+        return maxindex;
+    }
 }

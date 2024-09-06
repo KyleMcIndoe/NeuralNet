@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 
 global namespace functions {
 
@@ -22,6 +23,17 @@ global namespace functions {
     double relu(double x) {
         if (x < 0) return 0;
         return x;
+    }
+
+    public int[] forwardPropagation(double[][] trainingDataInputs, int[] trainingDataAnswers, network n) {
+        int[] outputs = new double[trainingDataInputs.Length];
+
+        for(int i = 0; i < outputs.Length; i++) {
+            double[] ioutput = n.calculateOutputs(trainingDataInputs[i], n);
+            outputs[i] = n.classifyOutput(ioutput);
+        }
+
+        return outputs;
     }
 
 }
