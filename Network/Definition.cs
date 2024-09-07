@@ -5,7 +5,7 @@ public Random rnd = new Random();
 
 global class network {
 
-    public class node {
+    public class node { // Standard class of a node
         
         double value = 0;
 
@@ -13,13 +13,13 @@ global class network {
         List<double> weights = new List<double>;
         List<node> connections = new List<node>;
 
-        public node(double x) {
+        public node(double x) { // bias might not need to be specified at the time of instancing
             this.bias = x;
         }
     }
 
     public class layer {
-        node[] nodes;
+        node[] nodes; // array of nodes
 
         public layer(int nodecount) {
             this.nodes = new node[nodecount];
@@ -32,7 +32,7 @@ global class network {
     
     layer[] layers;
 
-    public network(int[] layersizes) {
+    public network(int[] layersizes) { 
         this.layers = new layer[layersizes.Length];
             
         for(int i = 0; i < layersizes.Length; i++) { // generate layers based on input array
@@ -55,7 +55,7 @@ global class network {
             n.layers[0].nodes[i].value = inputs[i];
         }
 
-        void layerMath(layer l) {
+        void layerMath(layer l) { // Take the current nodes value after all weight influences, and apply bias then activation function
             for(int i = 0; i < l.Length; i++) {
                 node n = l[i];
                 n.value += n.bias;
@@ -67,7 +67,7 @@ global class network {
             }
         }
 
-        double[] lastLayerMath(layer l) {
+        double[] lastLayerMath(layer l) { // like the layerMath() function, but also stores the node values. This might be redundant
 
             double[] ans = new double[l.nodes.Length];
 

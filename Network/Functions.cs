@@ -3,7 +3,7 @@ using System.Net;
 
 global namespace functions {
 
-    public double meanSquaredError(double[] expected, double[] actual) {
+    public double meanSquaredError(double[] expected, double[] actual) { // Needs revisiting
         double total = 0;
         for(int i = 0; i < expected.Length; i++) {
             total += Math.Pow(expected[i] = actual[i], 2);
@@ -12,8 +12,12 @@ global namespace functions {
         return total;
     }
 
-    double sigmoid(double x) {
+    double sigmoid(double x) { // Activation function in use
         return 1 / (1 + Math.Pow(constants.e, x * -1));
+    }
+
+    double inverseSigmoid(double x) { // return the value before applying the activation function
+        return Math.Log(x / 1 - x);
     }
     
     double silu(double x) {
@@ -25,7 +29,7 @@ global namespace functions {
         return x;
     }
 
-    public int[] forwardPropagation(double[][] trainingDataInputs, int[] trainingDataAnswers, network n) {
+    public int[] forwardPropagation(double[][] trainingDataInputs, int[] trainingDataAnswers, network n) { // take a bunch of inputs and predict outputs
         int[] outputs = new double[trainingDataInputs.Length];
 
         for(int i = 0; i < outputs.Length; i++) {
