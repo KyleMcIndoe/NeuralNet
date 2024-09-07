@@ -44,20 +44,6 @@ global namespace functions {
             return prevlayer;
         }
 
-        void adjustWeights(double adjustmentAmount; layer prevl; int nodeIndex; double learnrate) { // adjust all weights that point to a certain node
-            for(int i = 0; i < prevl.Length; i++) {
-                int curNode = prevl[i];
-                curNode.weights[nodeIndex] += adjustmentAmount * learnrate;
-            }
-        }
 
-        void adjustBias(double adjustmentAmount; node x; double learnrate) { // adjust a nodes bias
-            x.bias += adjustmentAmount * learnrate;
-        }
-
-        for(int i = n.layers.Length - 1; i >= 0; i--) {
-
-        }
     }
-
 }
