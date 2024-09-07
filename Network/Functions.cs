@@ -48,6 +48,15 @@ global namespace functions {
             return prevlayer;
         }
 
+        void adjustWeights(node x,int nodeindex, int layernum, double amount) { // recursive function to adjust weights
+            if (layernum == 0) return;
 
+            node[] prevlayer = findInputNodes(x, layernum);
+            
+            for(int i = 0; i < prevlayer.Length; i++) {
+                prevlayer[i].weights[nodeindex] -= amount * learnrate; // still need to figure out amount
+                adjustWeights(prevlayer[i], i, layernum - 1, amount); // decrease amount by some chain rule property
+            }
+        }
     }
 }
