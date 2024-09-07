@@ -36,7 +36,7 @@ global namespace functions {
         return outputs;
     }
 
-    public void backwardPropagation(network n, int[] forwardProp, int[] trainingDataAnswers) {
+    public void backwardPropagation(network n, int[] forwardProp, int[] trainingDataAnswers, double learnrate) {
         double mse = meanSquaredError(trainingDataAnswers, forwardProp);
 
         node[] findInputNodes(node x, int layernum) { // return a list of nodes that connect to a certain node
@@ -53,6 +53,10 @@ global namespace functions {
 
         void adjustBias(double adjustmentAmount; node x; double learnrate) { // adjust a nodes bias
             x.bias += adjustmentAmount * learnrate;
+        }
+
+        for(int i = n.layers.Length - 1; i >= 0; i--) {
+
         }
     }
 
